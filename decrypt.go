@@ -73,6 +73,7 @@ func Decrypt(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 		}
 
 	}
+
 	if err == io.EOF {
 		err = nil
 	}
