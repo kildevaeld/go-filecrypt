@@ -24,9 +24,10 @@ import (
 
 func printError(err error) {
 	if err != nil {
-		fmt.Fprint(os.Stderr, "%s\n", err)
+		fmt.Fprintf(os.Stderr, "fenc error: %v\n", err)
 		os.Exit(1)
 	}
+
 }
 
 var cfgFile string
@@ -51,9 +52,9 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig)
+	///cobra.OnInitialize(initConfig)
 
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.fenc.yaml)")
+	//RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.fenc.yaml)")
 
 	RootCmd.PersistentFlags().StringP("key", "k", "", "Encryption key")
 	viper.BindPFlag("key", RootCmd.PersistentFlags().Lookup("key"))
