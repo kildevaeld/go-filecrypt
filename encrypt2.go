@@ -12,14 +12,19 @@ import (
 
 func read(r io.Reader, out []byte, nr int) error {
 	re := 0
+	try := 1
 	for {
+		log.Printf("reading try: %d", try)
 		n, err := r.Read(out[re:])
 		if err != nil {
+			if n != nr {
+				return errors.New("short read")
+			}
 			return err
 		}
 
 		re += n
-
+		try++
 		if n == nr {
 			break
 		}
@@ -115,7 +120,7 @@ func Decrypt(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 		return errors.New("header length")
 	}
 
-	if string(header[:]) != "vau" {
+	if string(header[:]) != "fnc" {
 		return errors.New("file format")
 	}
 
@@ -140,7 +145,7 @@ func Decrypt(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 			return errors.New("short read")
 		}*/
 
-		if err = read(src, buf[0:segSize], segSize); err != nil {
+		if err = read(src, buf[0:segSize], segSize); err != nil && err != io.EOF {
 			return err
 		}
 

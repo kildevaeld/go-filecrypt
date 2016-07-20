@@ -10,6 +10,8 @@ import (
 
 const MaxUint16 = ^uint16(0)
 
+var ErrWrongKey error = errors.New("wrong key")
+
 func DecryptOld(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 
 	var header [HeaderLength]byte
@@ -24,7 +26,7 @@ func DecryptOld(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 		return errors.New("header")
 	}
 
-	if string(header[:]) != "vau" {
+	if string(header[:]) != "fnc" {
 		return errors.New("fileformat")
 	}
 
@@ -92,5 +94,5 @@ func DecryptMessage(src []byte, key *[32]byte) ([]byte, error) {
 		return buf, nil
 	}
 
-	return nil, errors.New("decrypt")
+	return nil, ErrWrongKey
 }
