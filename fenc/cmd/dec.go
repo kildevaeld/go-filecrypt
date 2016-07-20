@@ -29,7 +29,7 @@ var outputFlag string
 // decCmd represents the dec command
 var decCmd = &cobra.Command{
 	Use:   "dec <path>",
-	Short: "Decrypt a file",
+	Short: "decrypt file at path",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
@@ -68,7 +68,7 @@ func init() {
 	RootCmd.AddCommand(decCmd)
 	decCmd.Aliases = []string{"d"}
 
-	decCmd.Flags().StringVarP(&outputFlag, "output", "o", "output.out", "")
+	decCmd.Flags().StringVarP(&outputFlag, "output", "o", "output.fenc", "")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

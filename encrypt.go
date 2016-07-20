@@ -19,7 +19,7 @@ func writeHeader(w io.Writer) error {
 
 }
 
-func Encrypt(dest io.Writer, src io.Reader, key *[32]byte) (written uint64, err error) {
+func EncryptOld(dest io.Writer, src io.Reader, key *[32]byte) (written uint64, err error) {
 	buf := make([]byte, PackageSize)
 
 	// write the header

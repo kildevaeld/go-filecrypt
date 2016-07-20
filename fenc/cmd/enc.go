@@ -26,14 +26,9 @@ import (
 
 // encCmd represents the enc command
 var encCmd = &cobra.Command{
-	Use:   "enc",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "enc <path>",
+	Short: "encrypt file at path",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO: Work your own magic here
 		if len(args) == 0 {
@@ -69,16 +64,8 @@ to quickly create a Cobra application.`,
 func init() {
 	RootCmd.AddCommand(encCmd)
 
-	//decCmd.Flags().StringVarP(&outputFlag, "output", "o", "output.out", "")
+	encCmd.Aliases = []string{"d"}
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// encCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// encCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	encCmd.Flags().StringVarP(&outputFlag, "output", "o", "output.fenc", "")
 
 }

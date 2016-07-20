@@ -10,7 +10,7 @@ import (
 
 const MaxUint16 = ^uint16(0)
 
-func Decrypt(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
+func DecryptOld(dest io.Writer, src io.Reader, key *[32]byte) (err error) {
 
 	var header [HeaderLength]byte
 	hr, eh := src.Read(header[:])
