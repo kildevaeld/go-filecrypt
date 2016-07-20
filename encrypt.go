@@ -9,7 +9,7 @@ import (
 
 func writeHeader(w io.Writer) error {
 
-	nw, err := w.Write([]byte("vau"))
+	nw, err := w.Write([]byte("fnc"))
 
 	if nw != HeaderLength && err == nil {
 		err = io.ErrShortWrite
